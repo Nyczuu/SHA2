@@ -101,7 +101,7 @@ void setShaders(char* vertexShaderFile, char* fragmentShaderFile)
 void drawScene0(void)
 {
 	while (1) {
-		static float radians = 0.0;
+		static float radians = 30.0;
 		radians = int(radians + 20);
 
 		glClear(GL_COLOR_BUFFER_BIT);
@@ -109,41 +109,35 @@ void drawScene0(void)
 		glUseProgram(programHandle);
 		glm::mat4 ViewTranslate = glm::mat4(1.0f);
 		ViewTranslate = glm::scale(ViewTranslate, glm::vec3(0.3, 0.3, 0.3));
-		ViewTranslate = glm::rotate(ViewTranslate, glm::radians(radians), glm::vec3(5.3, 2.3, 2.3));
+		ViewTranslate = glm::rotate(ViewTranslate, glm::radians(radians), glm::vec3(2.1, 1.5, 1.0));
 
 		glUniformMatrix4fv(MV, 1, GL_TRUE, glm::value_ptr(ViewTranslate));
 
-		// Draw square.
 		glBegin(GL_TRIANGLES);
-		// Sciana 1
 		glColor3f(1.0f, 0.0, 0.0);
-		glLineWidth(3.0f);
 
+		// Sciana 1
 		glVertex3f(0.3f, 0.7f, 0.0f);
 		glVertex3f(-1.0f, 0.75f, -1.0f);
 		glVertex3f(1.0f, 1.0f, -1.0f);
 
 		// Sciana 2
-
 		glVertex3f(0.3f, 0.7f, 0.0f);
 		glVertex3f(-1.0f, 0.75f, -1.0f);
 		glVertex3f(0.6f, -1.0f, -1.0f);
 
 		// Sciana 3
-
 		glVertex3f(0.3f, 0.7f, 0.0f);
 		glVertex3f(1.0f, 1.0f, -1.0f);
 		glVertex3f(0.6f, -1.0f, -1.0f);
 
 		// Sciana 4
-
 		glVertex3f(1.0f, 1.0f, -1.0f);
 		glVertex3f(-1.0f, 0.75f, -1.0f);
 		glVertex3f(0.6f, -1.0f, -1.0f);
 		glEnd();
 
 		glFlush();
-
 		Sleep(10);
 	}
 }
