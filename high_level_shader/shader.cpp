@@ -196,42 +196,6 @@ void setup(void)
 	glEnableVertexAttribArray(0);
 	glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 0, (const GLvoid*) sizeof(vertices));
 	glEnableVertexAttribArray(1);
-
-	//tekstura
-	/*glGenTextures(1, &tex);
-	glBindTexture(GL_TEXTURE_2D, tex);
-	glTexStorage2D(GL_TEXTURE_2D, 4, GL_RGBA8, 8, 8);
-
-	static const unsigned char texture_data[] =
-	{
-		0xFF, 0x00, 0xFF, 0x00, 0xFF, 0x00, 0xFF, 0x00,
-		0x00, 0xFF, 0x00, 0xFF, 0x00, 0xFF, 0x00, 0xFF,
-		0xFF, 0x00, 0xFF, 0x00, 0xFF, 0x00, 0xFF, 0x00,
-		0x00, 0xFF, 0x00, 0xFF, 0x00, 0xFF, 0x00, 0xFF,
-		0xFF, 0x00, 0xFF, 0x00, 0xFF, 0x00, 0xFF, 0x00,
-		0x00, 0xFF, 0x00, 0xFF, 0x00, 0xFF, 0x00, 0xFF,
-		0xFF, 0x00, 0xFF, 0x00, 0xFF, 0x00, 0xFF, 0x00,
-		0x00, 0xFF, 0x00, 0xFF, 0x00, 0xFF, 0x00, 0xFF
-	};
-
-	glTexSubImage2D(GL_TEXTURE_2D,
-					0,
-					0, 0,
-					8, 8,
-					GL_RED, GL_UNSIGNED_BYTE,
-					texture_data);
-
-
-
-	//utworzenie samplera
-	glGenSamplers(1, &samp);
-	glSamplerParameteri(samp, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
-	glSamplerParameteri(samp, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
-	glSamplerParameteri(samp, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
-
-	glUniform1i(glGetUniformLocation(programHandle, "tex"), 0);
-	glBindSampler(0, samp);*/
-
 }
 
 // sprawdzenie i przygotowanie obslugi wybranych rozszerzen
@@ -239,7 +203,6 @@ void extensionSetup()
 {
 	// pobranie numeru wersji biblioteki OpenGL
 	const char * version = (char *)glGetString(GL_VERSION);
-
 
 	if ((version[0] < '1') || ((version[0] == '1') && (version[2] < '5')) || (version[1] != '.')) {
 
@@ -298,7 +261,6 @@ void keyInput(unsigned char key, int x, int y)
 // Main routine.
 int main(int argc, char **argv)
 {
-
 	glutInit(&argc, argv);
 	glutInitDisplayMode(GLUT_SINGLE | GLUT_RGB);
 	glutInitWindowSize(500, 500);
@@ -307,11 +269,8 @@ int main(int argc, char **argv)
 	extensionSetup();
 
 	setShaders("passThrough.vs", "red.fs");
-	// setShaders("vsTexture.vs", "fsTexture.fs");
-
 
 	setup();
-	//glutDisplayFunc(drawScene);
 	glutDisplayFunc(drawScene0);
 	glutReshapeFunc(resize);
 	glutKeyboardFunc(keyInput);
