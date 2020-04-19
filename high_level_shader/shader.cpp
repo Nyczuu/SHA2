@@ -110,7 +110,7 @@ void drawScene0(void)
 
 		glUseProgram(programHandle);
 		glm::mat4 ViewTranslate = glm::mat4(1.0f);
-		ViewTranslate = glm::scale(ViewTranslate, glm::vec3(0.3, 0.3, 0.3));
+		ViewTranslate = glm::scale(ViewTranslate, glm::vec3(0.2, 0.2, 0.2));
 		ViewTranslate = glm::rotate(ViewTranslate, glm::radians(radians), glm::vec3(2.1, 1.5, 1.0));
 
 		glUniformMatrix4fv(MV, 1, GL_TRUE, glm::value_ptr(ViewTranslate));
@@ -119,24 +119,24 @@ void drawScene0(void)
 		glColor3f(1.0f, 0.0, 0.0);
 
 		// Sciana 1
-		glVertex3f(0.3f, 0.7f, 0.0f);
-		glVertex3f(-1.0f, 0.75f, -1.0f);
-		glVertex3f(1.0f, 1.0f, -1.0f);
+		glVertex3f(0.6f, 1.4f, 0.0f);
+		glVertex3f(-2.0f, 1.5f, -2.0f);
+		glVertex3f(2.0f, 2.0f, -2.0f);
 
 		// Sciana 2
-		glVertex3f(0.3f, 0.7f, 0.0f);
-		glVertex3f(-1.0f, 0.75f, -1.0f);
-		glVertex3f(0.6f, -1.0f, -1.0f);
+		glVertex3f(0.6f, 1.4f, 0.0f);
+		glVertex3f(-2.0f, 1.5f, -2.0f);
+		glVertex3f(0.6f, -2.0f, -2.0f);
 
 		// Sciana 3
-		glVertex3f(0.3f, 0.7f, 0.0f);
-		glVertex3f(1.0f, 1.0f, -1.0f);
-		glVertex3f(0.6f, -1.0f, -1.0f);
+		glVertex3f(0.6f, 1.4f, 0.0f);
+		glVertex3f(2.0f, 2.0f, -2.0f);
+		glVertex3f(0.6f, -2.0f, -2.0f);
 
 		// Sciana 4
-		glVertex3f(1.0f, 1.0f, -1.0f);
-		glVertex3f(-1.0f, 0.75f, -1.0f);
-		glVertex3f(0.6f, -1.0f, -1.0f);
+		glVertex3f(2.0f, 2.0f, -2.0f);
+		glVertex3f(-2.0f, 1.5f, -2.0f);
+		glVertex3f(0.6f, -2.0f, -2.0f);
 		glEnd();
 
 		glFlush();
