@@ -100,6 +100,8 @@ void setShaders(char* vertexShaderFile, char* fragmentShaderFile)
 // Drawing routine.
 void drawScene0(void)
 {
+	glClearColor(1.0, 1.0, 1.0, 0.0);
+
 	while (1) {
 		static float radians = 30.0;
 		radians = int(radians + 20);
@@ -140,62 +142,6 @@ void drawScene0(void)
 		glFlush();
 		Sleep(10);
 	}
-}
-
-
-// Drawing routine.
-void drawScene(void)
-{
-	glClear(GL_COLOR_BUFFER_BIT);
-
-	glUseProgram(programHandle); // Installs program into current rendering state.
-	glm::mat4 ViewTranslate = glm::translate(glm::mat4(1.0f), glm::vec3(1, 1, 1));
-	glUniformMatrix4fv(MV, 1, GL_TRUE, glm::value_ptr(ViewTranslate));
-
-	//do saplera
-	glActiveTexture(GL_TEXTURE0);
-	glBindTexture(GL_TEXTURE_2D, tex);
-
-	glBindVertexArray(idVA);
-
-	glDrawArrays(GL_TRIANGLES, 0, 6);
-	glFlush();
-}
-
-// Initialization routine.
-void setup(void)
-{
-	glClearColor(1.0, 1.0, 1.0, 0.0);
-
-	glGenVertexArrays(1, &idVA);
-	glBindVertexArray(idVA);
-	GLfloat vertices[6][2] = {
-		 { -0.90, -0.90 }, // Triangle 1
-		 { 0.85, -0.90 },
-		 { -0.90, 0.85 },
-		 { 0.90, -0.85 }, // Triangle 2
-		 { 0.90, 0.90 },
-		 { -0.85, 0.90 }
-	};
-	GLfloat textures[6][2] = {
-		{ 0.0, 0.0 }, // Triangle 1
-		{ 0.0, 1.0 },
-		{ 1.0, 0.0 },
-		{ 0.0, 0.0 }, // Triangle 2
-		{ 0.0, 1.0 },
-		{ 1.0, 0.0 }
-	};
-	glGenBuffers(1, &idBuf);
-	glBindBuffer(GL_ARRAY_BUFFER, idBuf);
-	glBufferData(GL_ARRAY_BUFFER, sizeof(vertices) + sizeof(textures), NULL, GL_STATIC_DRAW);
-
-	glBufferSubData(GL_ARRAY_BUFFER, 0, sizeof(vertices), vertices);
-	glBufferSubData(GL_ARRAY_BUFFER, sizeof(vertices), sizeof(textures), textures);
-
-	glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, 0, (const GLvoid*)0);
-	glEnableVertexAttribArray(0);
-	glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 0, (const GLvoid*) sizeof(vertices));
-	glEnableVertexAttribArray(1);
 }
 
 // sprawdzenie i przygotowanie obslugi wybranych rozszerzen
@@ -270,7 +216,6 @@ int main(int argc, char **argv)
 
 	setShaders("passThrough.vs", "red.fs");
 
-	setup();
 	glutDisplayFunc(drawScene0);
 	glutReshapeFunc(resize);
 	glutKeyboardFunc(keyInput);
